@@ -8,12 +8,12 @@ export const Label = styled.Text`
 export const Title = styled.Text`
   color: #899095;
   font-size: 26px;
-  position: absolute;
-  bottom: 0;
   background-color: #3b3b3b;
   padding: 10px;
   border: 2px solid grey;
   border-radius: 20px;
+  width: 90%;
+  margin-bottom: 180px;
 `;
 
 export const Container = styled.SafeAreaView`
@@ -23,6 +23,6 @@ export const Container = styled.SafeAreaView`
   background-size: contain;
   background-repeat: no-repeat;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   background-color: black;
 `;

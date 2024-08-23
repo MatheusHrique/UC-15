@@ -9,7 +9,10 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <Title>Boa noite, tenha uma ótima noite</Title>
+        <Title>
+          "No momento de maior escuridão, os homens veem as estrelas." -Ralph
+          Waldo Emerson
+        </Title>
       </View>
     </Container>
   );
