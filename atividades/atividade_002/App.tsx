@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Home from "./src/screens/Home/Home";
+import Home from "./src/screens/Home";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Home />
         <StatusBar style="auto" />
@@ -12,11 +12,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
