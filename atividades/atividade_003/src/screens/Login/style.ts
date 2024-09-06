@@ -8,4 +8,15 @@ export const InputName = styled.TextInput`
   width: 200px;
   height: 50px;
   margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+`;
+
+export const Container = styled.SafeAreaView`
+  background-color: #5671cb;
+  border-radius: 10px;
+  border-width: 10px;
+  padding: 10px;
 `;

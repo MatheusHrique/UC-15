@@ -5,6 +5,9 @@ import Index from "./src/screens/Login";
 export default function App() {
   return (
     <View style={styles.container}>
+      <Text style={{ fontSize: 40, color: "#ffffff", marginBottom: 70 }}>
+        Login:
+      </Text>
       <Index />
       <StatusBar style="auto" />
     </View>
@@ -14,7 +17,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#0d4dad",
     alignItems: "center",
     justifyContent: "center",
   },
