@@ -1,33 +1,47 @@
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, View, StyleSheet, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  SafeAreaView,
+  View,
+  StyleSheet,
+  Text,
+  Image,
+} from "react-native";
 import { CampoDeTexto, Procurar } from "./style";
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
-
-type ItemProps = { title: string };
-
-const Item = ({ title }: ItemProps) => (
-  <View style={styles.itemcss}>
-    <Text style={styles.titlecss}>{title}</Text>
-  </View>
-);
+import axios from "axios";
+import { axiosInstance } from "../../utils/axios";
+import { listaDTO } from "../../types/lista";
 
 const RickAndMortySearch = () => {
-  const [search, setSearch] = useState<string>("");
-  const [data, setData] = useState<string>("");
+  const [search, setSearch] = useState<string>("1");
+  const [lista, setLista] = useState<listaDTO[]>([]);
+
+  type ItemProps = {
+    item: listaDTO;
+  };
+
+  const Card = ({ item }: ItemProps) => (
+    <View style={styles.itemcss}>
+      <Text style={styles.titlecss}>
+        {item.id}, {item.name}, {item.status}
+      </Text>
+      <Image source={{ uri: item.image }} style={{ width: 400, height: 400 }} />
+    </View>
+  );
+
+  const getData = async (input: string) => {
+    try {
+      const response = await axiosInstance.get<listaDTO[]>("/" + input);
+      console.log(response.data);
+      setLista(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData(search);
+  }, [search]);
 
   return (
     <SafeAreaView>
@@ -36,15 +50,20 @@ const RickAndMortySearch = () => {
         <CampoDeTexto
           onChangeText={setSearch}
           placeholder="Coloque o ID do seu personagem aqui"
+          value={search}
         />
-        <Procurar>Procurar</Procurar>
+        <Procurar onPress={() => getData(search)}>
+          <Text>Procurar</Text>
+        </Procurar>
       </View>
-      <FlatList
-        style={{ alignSelf: "center" }}
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={(item) => item.id}
-      />
+      {lista.length > 0 && (
+        <FlatList
+          style={{ alignSelf: "center" }}
+          data={lista}
+          renderItem={({ item }) => <Card item={item} />}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -53,8 +72,10 @@ const styles = StyleSheet.create({
   itemcss: {
     backgroundColor: "#1d7ab8",
     padding: 10,
-    width: 200,
-    height: 100,
+    width: 800,
+    height: 800,
+    marginVertical: 8,
+    marginHorizontal: 16,
     borderRadius: 15,
     borderWidth: 5,
     borderColor: "#000000",

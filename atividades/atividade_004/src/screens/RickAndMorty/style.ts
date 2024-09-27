@@ -16,6 +16,6 @@ export const CampoDeTexto = styled.TextInput`
   border-radius: 5px;
   justify-content: center;
   padding: 10px;
-  width: 30vw;
+  width: 400px;
   color: #4f4f4f;
 `;
