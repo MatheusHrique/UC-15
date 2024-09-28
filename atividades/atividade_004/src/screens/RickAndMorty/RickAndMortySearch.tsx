@@ -19,9 +19,9 @@ const RickAndMortySearch = () => {
     return (
       <View style={styles.itemcss}>
         <Text style={styles.titlecss}>
-          Id: {item.id}, <br />
-          Nome: {item.name}, <br />
-          Status: {item.status} <br />
+          Id: {item.id}. Nome: {item.name}. <br />
+          Gênero: {item.gender}. Status: {item.status}. <br />
+          Espécie: {item.species}. <br />
         </Text>
         <Image
           source={{ uri: item.image }}
